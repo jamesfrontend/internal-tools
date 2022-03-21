@@ -1,0 +1,419 @@
+@import '@mskcc/fundamentals/src/colors';
+
+@mixin border($position, $width) {
+    border-#{$position}: $width solid $msk--warm-gray-80;
+}
+
+@mixin default-transition($var) {
+    transition: $var 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+$transition-attr: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+$default-box-shadow: 0 4px 8px 0 rgba(28, 28, 32, 0.25);
+$box-shadow-2: 0 4px 6px rgba(2, 9, 52, 0.25);
+$box-shadow-small: 0 4px 4px rgba(2, 9, 52, 0.25);
+
+.flex-align-center {
+    display: flex;
+    align-items: center;
+}
+
+.main-color-table {
+    margin: 0.25rem 0 -3rem 0;
+    width: 100%;
+    background-color: $msk--white-0;
+}
+
+.msksb-table-wrapper {
+    padding-block: 2rem;
+    overflow-y: auto;
+}
+
+.msksb-table {
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    th {
+        background-color: $msk--white-0;
+        text-align: left;
+    }
+}
+
+.msksb-table--thead {
+    th {
+        padding-inline-end: 2rem;
+    }
+    th:nth-child(2) {
+        padding-inline-start: 2rem;
+    }
+}
+
+.msksb-heading-cell {
+    border-bottom: 1px solid $msk--warm-gray-30;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.msksb-heading,
+.msksb-subheading,
+.msksb-row-heading {
+    color: $msk--gray-70;
+}
+
+.msksb-subheading-cell {
+    padding-block-end: 0.5rem;
+    width: 150px;
+    white-space: nowrap;
+}
+
+.msksb-subheading {
+    font-family: 'redhat-mono';
+    font-weight: 400;
+}
+
+.msksb-tbody {
+    th {
+        width: fit-content;
+        position: sticky;
+        left: 0;
+        vertical-align: center;
+        z-index: 100;
+    }
+}
+
+.msksb-row-data-1 {
+    padding-inline-start: 2rem;
+}
+
+.msksb-row-heading {
+    min-height: 60px;
+
+    .msksb-row-text {
+        border-right: 1px solid $msk--warm-gray-30;
+        text-align: right;
+        padding: 1rem;
+    }
+}
+
+.msksb-color-block-empty,
+.msksb-color-block {
+    cursor: pointer;
+    width: 150px;
+    aspect-ratio: 3 / 1;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msksb-color-block-empty {
+    display: none;
+}
+
+.msksb-color-block {
+    position: relative;
+    box-shadow: $default-box-shadow;
+    transition: box-shadow $transition-attr, transform $transition-attr;
+
+    &:hover {
+        transform: scale(1.07);
+        box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+            0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+
+        .msksb-swatch-label {
+            opacity: 1;
+        }
+    }
+}
+
+.msksb-swatch-label {
+    @include default-transition(opacity);
+    font-family: 'redhat-mono';
+    line-height: 1;
+    opacity: 0;
+    padding-inline: 0.5rem;
+}
+
+// ColorPopup
+.tippy-box[data-theme~='msk'] {
+    background-color: transparent;
+    color: $msk--gray-100;
+
+    .tippy-content {
+        padding: 0;
+    }
+
+    .tippy-arrow {
+        color: $msk--warm-gray-30;
+    }
+}
+
+.current-color-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.current-color {
+    background-color: $msk--white-0;
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: $box-shadow-2;
+    color: $msk--warm-gray-70;
+    overflow: hidden;
+    z-index: 1;
+
+    p:not(:first-child) {
+        padding-block-start: 0.5rem;
+    }
+}
+
+.color-block-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 0.5rem;
+    margin-bottom: 0.4rem;
+
+    &:first-child {
+        padding-block-start: 0.5rem;
+    }
+}
+
+.token-mono,
+.token-mono-400 {
+    font-family: 'redhat-mono';
+    font-size: 0.875rem;
+    color: $msk--warm-gray-100;
+}
+
+.token-mono {
+    font-weight: 500;
+}
+
+.token-mono-400 {
+    font-weight: 400;
+}
+
+.two-blocks {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+
+    border-bottom: 1px solid $msk--warm-gray-30;
+}
+
+.demo-block {
+    height: 2rem;
+    border-radius: 4px;
+    flex: 1 1 100%;
+    border: 1px solid $msk--warm-gray-30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:first-child {
+        margin-inline-end: 0.5rem;
+    }
+}
+
+.background-dark {
+    background-color: $msk--black-100;
+}
+
+.text-shadow {
+    text-shadow: 0 4px 6px rgba(2, 9, 52, 0.25);
+    line-height: 1;
+}
+
+.contrast-wrapper {
+    border-radius: 4px;
+    box-shadow: $default-box-shadow;
+    width: 100%;
+    max-height: 380px;
+    background-color: $msk--white-0;
+    overflow-y: auto;
+}
+
+.contrast-heading {
+    background-color: $msk--warm-gray-10;
+    font-size: 1rem;
+    padding: 0.5rem;
+    line-height: 1.75;
+}
+
+.contrast-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+
+    &:not(:last-child) {
+        border-bottom: 2px solid $msk--warm-gray-20;
+    }
+}
+
+.contrast-block {
+    width: 2rem;
+    border-radius: 4px;
+    aspect-ratio: 1 / 1;
+    box-shadow: $box-shadow-small;
+    margin-inline-end: 1rem;
+}
+
+// Copy button
+.tippy-box[data-theme~='msk-tooltip'] {
+    background-color: $msk--blue-90;
+    color: $msk--white-0;
+    font-size: 0.75rem;
+    line-height: 1.25;
+
+    .tippy-arrow {
+        color: $msk--blue-90;
+    }
+}
+
+.copy-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: copy;
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-inline-start: 0.5rem;
+    color: $msk--blue-70;
+    transition: background-color $transition-attr, color $transition-attr;
+    &:hover {
+        background-color: $msk--cool-gray-10;
+        color: $msk--blue-80;
+    }
+}
+
+.copy-button-no-point {
+    @extend .copy-button;
+    cursor: default;
+}
+
+// Dropdown for Popover
+.tippy-box[data-theme~='msk-dropdown'] {
+    background-color: transparent;
+}
+
+.popup-dropdown {
+    border: 1px solid $msk--cool-gray-40;
+    background-color: $msk--white-0;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-dropdown--button {
+    @include default-transition(all);
+    color: $msk--cool-gray-80;
+    padding: 0.25rem 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: copy;
+    text-align: left;
+    &:hover,
+    &:active {
+        background-color: $msk--cool-gray-40;
+        color: $msk--black-100;
+    }
+    &:not(:last-child) {
+        border-bottom: 1px solid $msk--cool-gray-40;
+    }
+}
+
+// tipp.js css sheet
+.tippy-box[data-animation='fade'][data-state='hidden'] {
+    opacity: 0;
+}
+
+[data-tippy-root] {
+    max-width: calc(100vw - 10px);
+}
+
+.tippy-box {
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: normal;
+    outline: 0;
+    transition-property: transform, visibility, opacity;
+}
+
+.tippy-box[data-placement^='top'] > .tippy-arrow {
+    bottom: 0;
+}
+
+.tippy-box[data-placement^='top'] > .tippy-arrow:before {
+    bottom: -7px;
+    left: 0;
+    border-width: 8px 8px 0;
+    border-top-color: initial;
+    transform-origin: center top;
+}
+
+.tippy-box[data-placement^='bottom'] > .tippy-arrow {
+    top: 0;
+}
+
+.tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    top: -7px;
+    left: 0;
+    border-width: 0 8px 8px;
+    border-bottom-color: initial;
+    transform-origin: center bottom;
+}
+
+.tippy-box[data-placement^='left'] > .tippy-arrow {
+    right: 0;
+}
+
+.tippy-box[data-placement^='left'] > .tippy-arrow:before {
+    border-width: 8px 0 8px 8px;
+    border-left-color: initial;
+    right: -7px;
+    transform-origin: center left;
+}
+
+.tippy-box[data-placement^='right'] > .tippy-arrow {
+    left: 0;
+}
+
+.tippy-box[data-placement^='right'] > .tippy-arrow:before {
+    left: -7px;
+    border-width: 8px 8px 8px 0;
+    border-right-color: initial;
+    transform-origin: center right;
+}
+
+.tippy-box[data-inertia][data-state='visible'] {
+    transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
+}
+
+.tippy-arrow {
+    width: 16px;
+    height: 16px;
+    color: #333;
+}
+
+.tippy-arrow:before {
+    content: '';
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.tippy-content {
+    position: relative;
+    padding: 5px 9px;
+    z-index: 1;
+}

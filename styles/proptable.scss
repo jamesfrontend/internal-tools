@@ -1,0 +1,99 @@
+@import '@mskcc/fundamentals/src/colors';
+
+$cell-height: min(40px);
+
+@mixin cell-width-height {
+    min-width: 6rem;
+    max-width: 12rem;
+    height: $cell-height;
+}
+
+@mixin cell-attr {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.0178571429em;
+    text-decoration: inherit;
+    text-transform: inherit;
+    box-sizing: border-box;
+}
+
+@mixin true-false-border {
+    border-width: 3px;
+    border-style: inset;
+}
+
+.section {
+    margin-inline: auto;
+    text-align: center;
+    @media (min-width: 82rem) {
+        width: min(100%, 1300px);
+    }
+}
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 1 100%;
+    padding: 0.5rem;
+}
+
+.prop-table--div {
+    margin: 3rem 2rem;
+    background-color: #fff;
+    border-radius: 4px;
+    display: inline-flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow-x: auto;
+    padding: 0.5rem;
+}
+
+.pt--th {
+    @include cell-width-height();
+    @include cell-attr();
+    text-transform: uppercase;
+}
+
+.pt-th--cell {
+    font-weight: 500;
+    color: $msk--cool-gray-70;
+    padding-inline: 1rem;
+    font-weight: 700;
+}
+
+.pt--tbody {
+    @include cell-attr();
+}
+
+.pt-tbody--row {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+.pt-tbody--td {
+    @include cell-width-height();
+    @include cell-attr();
+    border: 1px solid $msk--cool-gray-30;
+}
+
+.pt-td--cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 100%;
+    padding: 0.5rem;
+}
+
+.cell-true {
+    background-color: #fff;
+    border-color: $msk--green-20;
+    color: $msk--green-80;
+}
+
+.cell-false {
+    background-color: $msk--black-100;
+
+}

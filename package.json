@@ -1,0 +1,52 @@
+{
+  "name": "demo-react",
+  "version": "0.8.0",
+  "private": true,
+  "prettier": "@mskcc/prettier-config",
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ./ --ext js,jsx",
+    "lintfix": "eslint ./ --ext js,jsx --fix",
+    "fix:normalize": "sass-migrator division node_modules/normalize-scss/sass/**/*.scss",
+    "clean": "rimraf dist",
+    "clean:public": "rimraf public && mkdir public",
+    "dev-setup": "npm run clean:public && npx gulp",
+    "postinstall": "npm run fix:normalize"
+  },
+  "dependencies": {
+    "carbon-components": "^10.49.0",
+    "carbon-components-react": "^7.49.1",
+    "carbon-icons": "^7.0.7",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-export-default-from": "^7.16.0",
+    "@mskcc/components": "^0.8.0",
+    "@mskcc/components-react": "^0.8.0",
+    "@mskcc/fundamentals": "^0.8.0",
+    "@mskcc/prettier-config": "^0.8.0",
+    "@popperjs/core": "^2.10.2",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@tippyjs/react": "^4.2.6",
+    "classnames": "^2.3.1",
+    "copy-to-clipboard": "^3.3.1",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "eslint-plugin-react": "^7.22.0",
+    "gulp": "^4.0.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.42.1",
+    "sass-migrator": "^1.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesfrontend/internal-tools.git"
+  }
+}

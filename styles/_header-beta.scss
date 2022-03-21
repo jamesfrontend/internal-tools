@@ -1,0 +1,309 @@
+/* stylelint-disable no-duplicate-selectors */
+@use '@mskcc/components/src/button.scss';
+@import '@mskcc/fundamentals/src/_mixins.scss';
+@import '@mskcc/fundamentals/src/_variables.scss';
+@import '@mskcc/fundamentals/src/_colors.scss';
+@import 'breakpoint-sass/stylesheets/_breakpoint';
+@import 'breakpoint-slicer/stylesheets/_breakpoint-slicer';
+@import '@mskcc/fundamentals/src/icons.scss';
+@import 'carbon-components/scss/components/link/_link.scss';
+@import 'carbon-components/scss/components/tooltip/_tooltip.scss';
+@import 'carbon-components/scss/components/overflow-menu/_overflow-menu.scss';
+@import '@mskcc/fundamentals/src/carbon-fixes.scss';
+
+@include msk-reset-box-sizing('.msk-header');
+
+$carbon-transition-function: 70ms cubic-bezier(0, 0, 0.38, 0.9);
+$divider-color: $msk--warm-gray-20;
+$header-height: 4rem;
+$default-color: $msk--warm-gray-90;
+$logo-color: $msk--blue-80;
+$active-color: $msk--blue-80;
+$hover-color: $msk--cool-gray-70;
+$icon-color: $msk--blue-70;
+
+/*
+    * We are using a bottom box shadow in order to not squeeze the height
+    * of the header.
+
+    TODO
+    * Types: <a>, <button>
+    * Active No Underline
+    - clicking link to external site or launching a modal,
+    - not changing the state of the app we're in
+    - different experience
+        External linking
+        Open Modal
+    * Active Underline
+        Open Dropdown
+        Open Menu
+    *
+    *
+    * Hover No Underline
+
+    * Hover Underline
+*/
+
+//--------------------------------------------------------------------------
+// Header - Skip to content
+//--------------------------------------------------------------------------
+.msk--skip-to-content {
+  position: absolute;
+  // overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  visibility: inherit;
+  white-space: nowrap;
+}
+
+.msk--skip-to-content:focus {
+  // Using the msk ghost styling with the box-shadow as the border
+  @extend .bx--btn--ghost;
+  align-items: center;
+  clip: auto;
+  display: flex;
+  left: 0;
+  top: 0;
+  height: auto;
+  width: auto;
+  padding: 0.75rem 1rem;
+  z-index: 9999;
+}
+
+/* ----- Containers ----- */
+// Inner containers
+.msk-header-container {
+  height: 100%;
+  width: 100%;
+}
+
+.msk-header-content {
+  display: flex;
+  height: inherit;
+  padding-inline: 1rem;
+  width: inherit;
+}
+
+// Main container
+.msk-header {
+  background-color: $msk--white-0;
+  box-shadow: 0 msk-rem(2px) $divider-color;
+  box-sizing: border-box;
+  color: $default-color;
+  height: $header-height;
+  overflow: hidden;
+
+  &.max-width {
+    .msk-header-container {
+      @include msk-container-with-padding;
+    }
+
+    .msk-header-content {
+      padding: 0 0.5rem;
+    }
+  }
+}
+
+/* ----- Logo Elements ----- */
+// Logo and product name container
+.msk-header-product {
+  align-items: center;
+  color: $logo-color;
+  display: flex;
+  flex: 0 0 auto;
+  height: 100%;
+}
+
+// Logo link wrapper
+.msk-header-product-link {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  height: 100%;
+  margin-left: -0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+}
+
+.msk-header-product-logo-container {
+  > img,
+  > .msk-header-product-logo {
+    display: block;
+  }
+}
+
+.msk-header-product-name {
+  align-items: center;
+  box-shadow: msk-rem(1px) 0 $divider-color;
+  color: inherit;
+  display: flex;
+  font-weight: 600;
+  height: 100%;
+  margin-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ----- Navigation Elements ----- */
+// Navigation container
+.msk-header-app-menu {
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+// Navigation wrapper
+.msk-header-app-nav {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+
+  > li {
+    display: block;
+    height: 100%;
+  }
+}
+
+// Navigation item
+.msk-header-app-nav-item {
+  align-items: center;
+  color: $default-color;
+  cursor: pointer;
+  display: flex;
+  height: 100%;
+  padding-inline: 1rem;
+
+  .msk-header-app-nav-item-text {
+    color: inherit;
+  }
+}
+
+/* ----- Control Elements ----- */
+// Controls container
+.msk-header-controls {
+  align-items: center;
+  box-shadow: msk-rem(-1px) 0 $msk--warm-gray-20;
+  display: flex;
+  flex: 0 1 auto;
+  height: 100%;
+}
+
+// Control button
+.msk-header-controls-button {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: $icon-color;
+  cursor: pointer;
+  height: 100%;
+  font-size: 1.5rem;
+  padding-inline: 1rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  > .material-icons-sharp {
+    color: inherit;
+    font-size: 1.5rem;
+  }
+}
+
+/* ----- Hover states ----- */
+.msk-header-product-link:hover {
+  color: $logo-color;
+}
+
+.msk-header-app-nav-item:hover,
+.msk-header-controls-button:hover {
+  color: $hover-color;
+  text-decoration: none;
+
+  &::after {
+    background-color: $hover-color;
+  }
+}
+
+/* ----- Active states -----
+    *
+    * Add the bottom border to the nav items and control buttons
+*/
+.msk-header-app-nav-item,
+.msk-header-controls-button {
+  position: relative;
+  transition: all $carbon-transition-function;
+
+  &::after {
+    background-color: transparent;
+    border-radius: 2px 2px 0 0;
+    bottom: 0;
+    content: '';
+    height: 0.25rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transition: inherit;
+  }
+}
+
+.msk-header-app-nav-item,
+.msk-header-controls-button {
+  &.active,
+  &.active:hover {
+    color: $active-color;
+
+    &::after {
+      background-color: $active-color;
+    }
+  }
+}
+
+/* ----- Focus states -----
+    *
+    * We are using the same focus state throughout the header.
+    *
+    * We mimic shifting the active border up to combat the
+    * focus outline by:
+    *   - cropping up from the bottom by 4px,
+    *   - changing the border height from 4 to 8px.
+*/
+
+.msk-header {
+  *:focus-visible {
+    outline: none;
+  }
+
+  *:focus {
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 0.125rem $msk--black-100,
+      inset 0 0 0 calc(0.125rem + 2px) $msk--white-0;
+  }
+
+  .logo-dropdown:focus {
+    box-shadow: none;
+  }
+}
+
+.msk-header-app-nav-item:focus,
+.msk-header-controls-button:focus {
+  &::after {
+    // clip-path: inset(0 02px 2px 2px);
+    // height: 0.5rem;
+    border-radius: 0 0 2px 2px;
+    bottom: 2px;
+    height: 2px;
+    left: 2px;
+    right: 2px;
+  }
+}
+
+/* ----- Overflow ----- */
+.msk-header-app-nav-overflow {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
